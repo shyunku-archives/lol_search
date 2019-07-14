@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_cardview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#DDDDDD"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/summonerNicknameTextView"
+                android:layout_width="275dp"
+                android:layout_height="38dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/summonerIconView"
+                android:fontFamily="@font/rixgom"
+                android:text="PlayerNickname"
+                android:textAlignment="viewStart"
+                android:textSize="28sp" />
+
+            <ImageView
+                android:id="@+id/summonerIconView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/summonerLevelTextView"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/summonerNicknameTextView"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/summonerIconView"
+                android:fontFamily="@font/rixgom"
+                android:text="- 레벨"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/summonerMemoView"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@+id/summonerNicknameTextView"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/summonerLevelTextView"
+                android:fontFamily="@font/rixgom"
+                android:text="null"
+                android:textAlignment="viewEnd"
+                android:textSize="22sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

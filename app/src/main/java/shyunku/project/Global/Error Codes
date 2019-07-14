@@ -1,0 +1,6 @@
+에러 코드에 관한 정리
+
+에러 코드 1             riot API 키 만료된 에러 / 존재하지 않는 닉네임
+에러 코드 2             플레이어 아이콘 이미지 리소스 불러오기 실패 / 갱신 실패
+에러 코드 3             MainActivity에서 InfoActivity Intent로 플레이어 정보(계정 ID)가 전달되지 않음
+에러 코드 4             MainActivity의 info 리스트와 InfoActivity의 현재 플레이어 정보가 일치하지 않음
