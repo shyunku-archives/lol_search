@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import shyunku.project.Engines.FileManager;
 import shyunku.project.Engines.ImageManager;
 import shyunku.project.Global.RiotGameAPI;
-import shyunku.project.Objects.MyRecyclerAdapter;
+import shyunku.project.Objects.PlayerRecyclerAdapter;
 import shyunku.project.Objects.SummonerInfo;
 import shyunku.project.R;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     Summoner summonerParameter;
 
     RecyclerView recyclerView;
-    public static MyRecyclerAdapter adapter;
+    public static PlayerRecyclerAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
     public static final ArrayList<SummonerInfo> infos = new ArrayList<>();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new MyRecyclerAdapter(infos);
+        adapter = new PlayerRecyclerAdapter(infos);
         recyclerView.setAdapter(adapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+        // Handle action bar player_item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();

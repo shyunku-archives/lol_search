@@ -6,4 +6,10 @@
     <color name="darkTheme">#383838</color>
     <color name="lightDarkTheme">#EEEEEE</color>
     <color name="slightDarkTheme">#DDDDDD</color>
+
+    <color name="winBG">#0066BF</color>
+    <color name="loseBG">#910000</color>
+
+    <color name="PureBlack">#000000</color>
+    <color name="PureWhite">#FFFFFF</color>
 </resources>

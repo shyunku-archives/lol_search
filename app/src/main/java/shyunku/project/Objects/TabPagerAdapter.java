@@ -9,10 +9,12 @@ import shyunku.project.Activities.Tab_Views.TabRecentPvpList;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
     private int tabCount;
+    private String playerID = null;
 
-    public TabPagerAdapter(FragmentManager fm, int tabCount) {
+    public TabPagerAdapter(FragmentManager fm, int tabCount, String playerID) {
         super(fm);
         this.tabCount = tabCount;
+        this.playerID = playerID;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
                 TabRecentPvpList tab1 = new TabRecentPvpList();
                 return tab1;
             case 1:
-                TabMastery tab2 = new TabMastery();
+                TabMastery tab2 = new TabMastery(playerID);
                 return tab2;
         }
         return null;

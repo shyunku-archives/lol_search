@@ -18,13 +18,13 @@ import shyunku.project.Activities.InfoActivity;
 import shyunku.project.Engines.ImageManager;
 import shyunku.project.R;
 
-public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
+public class PlayerRecyclerAdapter extends RecyclerView.Adapter<PlayerRecyclerAdapter.ViewHolder> {
     public ArrayList<SummonerInfo> infos;
     public Context context;
 
     private ImageManager imageManager = new ImageManager();
 
-    public MyRecyclerAdapter(ArrayList<SummonerInfo> infos){
+    public PlayerRecyclerAdapter(ArrayList<SummonerInfo> infos){
         this.infos = infos;
     }
 
@@ -33,7 +33,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item, parent, false);
+        View view = inflater.inflate(R.layout.player_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
 
         return holder;

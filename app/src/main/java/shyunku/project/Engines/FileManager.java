@@ -92,7 +92,7 @@ public class FileManager {
         protected Bitmap doInBackground(Summoner... summoners) {
             Summoner summoner = summoners[0];
             received = summoner;
-            Bitmap bmp = new ImageManager().getBitmap("https://opgg-static.akamaized.net/images/profile_icons/profileIcon"+summoner.getProfileIconId()+".jpg");
+            Bitmap bmp = new ImageManager().getBitmap("https://opgg-static.akamaized.net/images/profile_icons/profileIcon"+received.getProfileIconId()+".jpg");
             return bmp;
         }
 
