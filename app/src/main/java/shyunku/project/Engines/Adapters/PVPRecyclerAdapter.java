@@ -44,7 +44,8 @@ public class PVPRecyclerAdapter  extends RecyclerView.Adapter<PVPRecyclerAdapter
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PVPInfo info = pvpList.get(position);
 
-        //holder.championIcon
+        if(info.getBitmap() != null)
+            holder.championIcon.setImageBitmap(info.getBitmap());
         holder.winOrLoseView.setText(info.isWIn()?"승리":"패배");
         holder.kdaView.setText(info.getKillCount()+"/"+info.getDieCount()+"/"+info.getAssistCount());
         String formatted = String.format("%.2f", (double)(info.getKillCount()+info.getAssistCount())/(double)info.getDieCount());

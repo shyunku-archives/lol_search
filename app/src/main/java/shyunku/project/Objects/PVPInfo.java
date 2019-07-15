@@ -1,5 +1,7 @@
 package shyunku.project.Objects;
 
+import android.graphics.Bitmap;
+
 public class PVPInfo {
     private boolean isWIn;
     private int killCount;
@@ -9,8 +11,9 @@ public class PVPInfo {
     private long csCount;
     private long startFlag;
     private long duration;
+    private Bitmap bitmap;
 
-    public PVPInfo(boolean isWIn, int killCount, int dieCount, int assistCount, long gainedGold, long csCount, long startFlag, long duration) {
+    public PVPInfo(boolean isWIn, int killCount, int dieCount, int assistCount, long gainedGold, long csCount, long startFlag, long duration, Bitmap bmp) {
         this.isWIn = isWIn;
         this.killCount = killCount;
         this.dieCount = dieCount;
@@ -19,6 +22,7 @@ public class PVPInfo {
         this.csCount = csCount;
         this.startFlag = startFlag;
         this.duration = duration;
+        this.bitmap = bmp;
     }
 
     public boolean isWIn() {
@@ -83,5 +87,13 @@ public class PVPInfo {
 
     public void setDuration(long duration) {
         this.duration = duration;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }

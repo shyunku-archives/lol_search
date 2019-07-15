@@ -1,5 +1,6 @@
 package shyunku.project.Activities.Tab_Views;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.api.endpoints.match.dto.MatchReference;
+import net.rithms.riot.api.endpoints.match.dto.Participant;
 import net.rithms.riot.api.endpoints.match.dto.ParticipantIdentity;
 import net.rithms.riot.api.endpoints.match.dto.ParticipantStats;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
@@ -28,7 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shyunku.project.Engines.Adapters.PVPRecyclerAdapter;
+import shyunku.project.Engines.Logger;
 import shyunku.project.Global.RiotGameAPI;
+import shyunku.project.Global.Statics;
 import shyunku.project.Objects.PVPInfo;
 import shyunku.project.R;
 
@@ -107,6 +111,10 @@ public class TabRecentPvpList extends Fragment {
             MatchList matchList = new RiotGameAPI().getMatchListBySummoner(summoner);
             List<MatchReference> list = matchList.getMatches();
 
+            Logger.Log("summonerID", summoner.getId());
+            Logger.Log("puuID", summoner.getPuuid());
+            Logger.Log("accountID", summoner.getAccountId());
+
             final int cropSize = 25;
             for(int i=0;i<cropSize;i++){
                 publishProgress((double)i/(double)cropSize);
@@ -114,7 +122,7 @@ public class TabRecentPvpList extends Fragment {
                 long gameID = ref.getGameId();
                 Match match = new RiotGameAPI().getMatchByMatchID(gameID);
                 int participantID = -1;
-                if(match.getParticipantIdentities().size()==10) {
+                if(match.getParticipantIdentities()!= null) {
                     for (int j = 0; j < 10; j++) {
                         ParticipantIdentity playerIden = match.getParticipantIdentities().get(j);
                         if (playerIden.getPlayer().getAccountId().equals(summoner.getAccountId())) {
@@ -128,9 +136,15 @@ public class TabRecentPvpList extends Fragment {
                     return null;
                 }
                 //ParticipantStats
-                ParticipantStats participantStats = match.getParticipants().get(participantID-1).getStats();
+                Participant participant = match.getParticipants().get(participantID-1);
+                ParticipantStats participantStats = participant.getStats();
+
+                Logger.Log("new", participant.getChampionId()+"");
+                Bitmap bmp = null;
+                if(Statics.getCustomChampionInfo(participant.getChampionId()+"")!= null)
+                    bmp = Statics.getCustomChampionInfo(participant.getChampionId()+"").getImage();
                 pvpList.add(new PVPInfo(participantStats.isWin(), participantStats.getKills(),participantStats.getDeaths(),participantStats.getAssists(),
-                        participantStats.getGoldEarned(), participantStats.getTotalMinionsKilled(), match.getGameCreation(), match.getGameDuration()));
+                        participantStats.getGoldEarned(), participantStats.getTotalMinionsKilled(), match.getGameCreation(), match.getGameDuration(), bmp));
             }
             return null;
         }
