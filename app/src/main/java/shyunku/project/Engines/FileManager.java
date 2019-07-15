@@ -80,7 +80,8 @@ public class FileManager {
             super.onPostExecute(summoner);
             LoadSummonerBmp getBmp = new LoadSummonerBmp();
             getBmp.setMemo(memo);
-            getBmp.execute(summoner);
+            if(summoner != null)
+                getBmp.execute(summoner);
         }
     }
 

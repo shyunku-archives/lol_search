@@ -35,6 +35,7 @@ import shyunku.project.Engines.FileManager;
 import shyunku.project.Engines.ImageManager;
 import shyunku.project.Global.RiotGameAPI;
 import shyunku.project.Engines.Adapters.PlayerRecyclerAdapter;
+import shyunku.project.Global.Statics;
 import shyunku.project.Objects.SummonerInfo;
 import shyunku.project.R;
 
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("OS VERSION", Build.VERSION.SDK_INT+"");
         super.onCreate(savedInstanceState);
+        Statics.ChampionInfoJsonParser(getApplicationContext());
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView)findViewById(R.id.playerRecyclerView);

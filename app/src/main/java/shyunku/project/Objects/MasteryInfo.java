@@ -1,18 +1,16 @@
 package shyunku.project.Objects;
 
-import net.rithms.riot.api.endpoints.static_data.dto.Champion;
-
 public class MasteryInfo {
     private boolean chestGranted;
     private int championLevel;
     private long championPoint;
-    private Champion champion;
+    private CustomChampionInfo champInfo;
 
-    public MasteryInfo(boolean chestGranted, int championLevel, long championPoint, Champion champion) {
+    public MasteryInfo(boolean chestGranted, int championLevel, long championPoint, CustomChampionInfo champion) {
         this.chestGranted = chestGranted;
         this.championLevel = championLevel;
         this.championPoint = championPoint;
-        this.champion = champion;
+        this.champInfo = champion;
     }
 
     public boolean isChestGranted() {
@@ -39,11 +37,11 @@ public class MasteryInfo {
         this.championPoint = championPoint;
     }
 
-    public Champion getChampion() {
-        return champion;
+    public CustomChampionInfo getChampInfo() {
+        return champInfo;
     }
 
-    public void setChampion(Champion champion) {
-        this.champion = champion;
+    public void setChampInfo(CustomChampionInfo champInfo) {
+        this.champInfo = champInfo;
     }
 }

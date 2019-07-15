@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shyunku.project.Engines.Adapters.PVPRecyclerAdapter;
-import shyunku.project.Engines.Logger;
 import shyunku.project.Global.RiotGameAPI;
 import shyunku.project.Objects.PVPInfo;
 import shyunku.project.R;
@@ -41,6 +41,7 @@ public class TabRecentPvpList extends Fragment {
     private PVPRecyclerAdapter adapter;
 
     private TextView progressBarRateView;
+    private ProgressBar progressBarView;
 
     private ConstraintLayout originalLayout;
     private ConstraintLayout loadingLayout;
@@ -62,6 +63,7 @@ public class TabRecentPvpList extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         recyclerView = (RecyclerView)view.findViewById(R.id.pvpRecyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
@@ -70,7 +72,8 @@ public class TabRecentPvpList extends Fragment {
         adapter = new PVPRecyclerAdapter(pvpList);
         recyclerView.setAdapter(adapter);
 
-        progressBarRateView = (TextView) view.findViewById(R.id.pvp_list_progressView);
+        progressBarRateView = (TextView) view.findViewById(R.id.pvp_progressView);
+        progressBarView = (ProgressBar) view.findViewById(R.id.pvp_progressBar);
         originalLayout = (ConstraintLayout)view.findViewById(R.id.originalLayout);
         loadingLayout = (ConstraintLayout)view.findViewById(R.id.loadingLayout);
 
@@ -104,25 +107,26 @@ public class TabRecentPvpList extends Fragment {
             MatchList matchList = new RiotGameAPI().getMatchListBySummoner(summoner);
             List<MatchReference> list = matchList.getMatches();
 
-            final int cropSize = 45;
+            final int cropSize = 25;
             for(int i=0;i<cropSize;i++){
                 publishProgress((double)i/(double)cropSize);
                 MatchReference ref = list.get(i);
                 long gameID = ref.getGameId();
                 Match match = new RiotGameAPI().getMatchByMatchID(gameID);
                 int participantID = -1;
-                for(int j=0;j<10;j++){
-                    ParticipantIdentity playerIden = match.getParticipantIdentities().get(j);
-                    if(playerIden.getPlayer().getAccountId().equals(summoner.getAccountId())){
-                        participantID = playerIden.getParticipantId();
-                        break;
+                if(match.getParticipantIdentities().size()==10) {
+                    for (int j = 0; j < 10; j++) {
+                        ParticipantIdentity playerIden = match.getParticipantIdentities().get(j);
+                        if (playerIden.getPlayer().getAccountId().equals(summoner.getAccountId())) {
+                            participantID = playerIden.getParticipantId();
+                            break;
+                        }
                     }
                 }
                 if(participantID == -1){
                     Log.e("ASSERT", "Error Code : 5");
                     return null;
                 }
-                Logger.Log("Last", participantID+"");
                 //ParticipantStats
                 ParticipantStats participantStats = match.getParticipants().get(participantID-1).getStats();
                 pvpList.add(new PVPInfo(participantStats.isWin(), participantStats.getKills(),participantStats.getDeaths(),participantStats.getAssists(),
@@ -144,7 +148,9 @@ public class TabRecentPvpList extends Fragment {
         protected void onProgressUpdate(Double... values) {
             super.onProgressUpdate(values);
             double percent = values[0]*100;
-            progressBarRateView.setText((int)percent+"%");
+            int percentage = (int)percent;
+            progressBarRateView.setText(percentage+"%");
+            progressBarView.setProgress(percentage);
         }
     }
 

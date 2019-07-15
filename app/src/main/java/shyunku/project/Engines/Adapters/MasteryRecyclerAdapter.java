@@ -34,10 +34,10 @@ public class MasteryRecyclerAdapter extends RecyclerView.Adapter<MasteryRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.championNameView.setText(mastery.get(position).getChampion().getName());
+        holder.championNameView.setText(mastery.get(position).getChampInfo().getChampionName());
         holder.masteryPointView.setText(mastery.get(position).getChampionPoint()+" 점");
         holder.masteryLevelView.setText("숙련도 "+mastery.get(position).getChampionLevel()+" 단계");
-        //holder.championIconView.setImageBitmap();
+        holder.championIconView.setImageBitmap(mastery.get(position).getChampInfo().getImage());
     }
 
     @Override
