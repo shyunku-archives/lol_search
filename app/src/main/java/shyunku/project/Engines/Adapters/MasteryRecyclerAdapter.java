@@ -1,4 +1,4 @@
-package shyunku.project.Objects;
+package shyunku.project.Engines.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import shyunku.project.Objects.MasteryInfo;
 import shyunku.project.R;
 
 public class MasteryRecyclerAdapter extends RecyclerView.Adapter<MasteryRecyclerAdapter.ViewHolder> {

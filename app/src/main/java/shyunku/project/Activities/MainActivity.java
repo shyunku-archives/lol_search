@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import shyunku.project.Engines.FileManager;
 import shyunku.project.Engines.ImageManager;
 import shyunku.project.Global.RiotGameAPI;
-import shyunku.project.Objects.PlayerRecyclerAdapter;
+import shyunku.project.Engines.Adapters.PlayerRecyclerAdapter;
 import shyunku.project.Objects.SummonerInfo;
 import shyunku.project.R;
 

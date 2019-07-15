@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,12 +17,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pvp_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/winBG">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/championIcon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -30,62 +32,97 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="50dp"
+                android:id="@+id/win_or_lose_view"
+                android:layout_width="40dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:gravity="center"
                 android:text="승리"
                 android:textAlignment="center"
                 android:textColor="@color/PureWhite"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/championIcon"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="60dp"
+                android:id="@+id/KDA_view"
+                android:layout_width="55dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:text="2/1/3"
                 android:textColor="@color/PureWhite"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintStart_toEndOf="@+id/win_or_lose_view"
+                app:layout_constraintTop_toBottomOf="@+id/kda_calculated_view" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="60dp"
+                android:id="@+id/kda_calculated_view"
+                android:layout_width="55dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:text="5.00"
                 android:textColor="@color/PureWhite"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/win_or_lose_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="90dp"
+                android:id="@+id/gained_gold_view"
+                android:layout_width="70dp"
                 android:layout_height="25dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:text="11514 골드"
                 android:textColor="@color/PureWhite"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/KDA_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="90dp"
+                android:id="@+id/gained_cs_view"
+                android:layout_width="70dp"
                 android:layout_height="25dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center"
                 android:text="CS 193"
                 android:textColor="@color/PureWhite"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/KDA_view"
+                app:layout_constraintTop_toBottomOf="@+id/gained_gold_view" />
+
+            <TextView
+                android:id="@+id/game_startflag_view"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
+                android:text="2019.07.14 01:13:23 시작"
+                android:textColor="@color/PureWhite"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/gained_gold_view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/game_endflag_view"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
+                android:text="2019.07.14 01:39:15 종료"
+                android:textColor="@color/PureWhite"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/gained_gold_view"
+                app:layout_constraintTop_toBottomOf="@+id/game_startflag_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

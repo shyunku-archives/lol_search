@@ -4,12 +4,17 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
+import net.rithms.riot.api.endpoints.match.dto.Match;
+import net.rithms.riot.api.endpoints.match.dto.MatchFrame;
+import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.api.endpoints.match.dto.MatchTimeline;
 import net.rithms.riot.api.endpoints.static_data.dto.Champion;
 import net.rithms.riot.api.endpoints.static_data.dto.ChampionList;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class RiotGameAPI {
@@ -68,5 +73,40 @@ public class RiotGameAPI {
             e.printStackTrace();
         }
         return champion;
+    }
+
+    public MatchList getMatchListBySummoner(Summoner summoner){
+        MatchList list = null;
+        try {
+            list =  api.getMatchListByAccountId(platform, summoner.getAccountId());
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public Match getMatchByMatchID(long id){
+        Match match = null;
+        try {
+            match = api.getMatch(platform, id);
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return match;
+    }
+
+    public MatchFrame getMatchParticipantFramebyID(long matchID){
+        MatchTimeline timeline = null;
+        MatchFrame lastFrame = null;
+
+        try {
+            timeline = api.getTimelineByMatchId(platform, matchID);
+            List<MatchFrame> frameList = timeline.getFrames();
+            lastFrame = frameList.get(frameList.size()-1);
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+
+        return lastFrame;
     }
 }

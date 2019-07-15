@@ -1,9 +1,10 @@
-package shyunku.project.Objects;
+package shyunku.project.Engines.Adapters;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import shyunku.project.Activities.Tab_Views.TabDailyPvpMonitor;
 import shyunku.project.Activities.Tab_Views.TabMastery;
 import shyunku.project.Activities.Tab_Views.TabRecentPvpList;
 
@@ -21,9 +22,12 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                TabRecentPvpList tab1 = new TabRecentPvpList();
-                return tab1;
+                TabRecentPvpList tab0 = new TabRecentPvpList(playerID);
+                return tab0;
             case 1:
+                TabDailyPvpMonitor tab1 = new TabDailyPvpMonitor();
+                return tab1;
+            case 2:
                 TabMastery tab2 = new TabMastery(playerID);
                 return tab2;
         }

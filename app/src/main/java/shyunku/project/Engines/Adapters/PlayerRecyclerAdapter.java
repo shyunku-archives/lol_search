@@ -1,4 +1,4 @@
-package shyunku.project.Objects;
+package shyunku.project.Engines.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import shyunku.project.Activities.InfoActivity;
 import shyunku.project.Engines.ImageManager;
+import shyunku.project.Objects.SummonerInfo;
 import shyunku.project.R;
 
 public class PlayerRecyclerAdapter extends RecyclerView.Adapter<PlayerRecyclerAdapter.ViewHolder> {

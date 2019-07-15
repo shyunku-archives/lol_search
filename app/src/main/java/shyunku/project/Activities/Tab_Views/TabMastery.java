@@ -18,15 +18,14 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 
 import java.util.ArrayList;
 
+import shyunku.project.Engines.Adapters.MasteryRecyclerAdapter;
 import shyunku.project.Engines.Logger;
 import shyunku.project.Global.RiotGameAPI;
 import shyunku.project.Objects.MasteryInfo;
-import shyunku.project.Objects.MasteryRecyclerAdapter;
 import shyunku.project.R;
 
 public class TabMastery extends Fragment {
     private RiotGameAPI api = new RiotGameAPI();
-    private Summoner summoner = null;
 
     private final ArrayList<MasteryInfo> masteryList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -34,6 +33,7 @@ public class TabMastery extends Fragment {
     private MasteryRecyclerAdapter adapter;
 
     private String playerID = null;
+    private Summoner summoner = null;
 
     public TabMastery(String playerID) {
         this.playerID = playerID;
@@ -57,14 +57,31 @@ public class TabMastery extends Fragment {
         adapter = new MasteryRecyclerAdapter(masteryList);
         recyclerView.setAdapter(adapter);
 
-        new getChampionInfoTask().execute(playerID);
+        new getSummonerTask().execute(playerID);
     }
 
-    private class getChampionInfoTask extends AsyncTask<String, Void, ArrayList<ChampionMastery>>{
+    private class getSummonerTask extends AsyncTask<String, Void, Summoner>{
+        @Override
+        protected Summoner doInBackground(String... strings) {
+            String id = strings[0];
+            Summoner summoner = new RiotGameAPI().getSummonerByID(id);
+            return summoner;
+        }
 
         @Override
-        protected ArrayList doInBackground(String... strings) {
-            Summoner summoner = new RiotGameAPI().getSummonerByID(strings[0]);
+        protected void onPostExecute(Summoner summoner) {
+            super.onPostExecute(summoner);
+            setSummoner(summoner);
+
+            new getChampionInfoTask().execute(summoner);
+        }
+    }
+
+    private class getChampionInfoTask extends AsyncTask<Summoner, Void, ArrayList<ChampionMastery>>{
+
+        @Override
+        protected ArrayList doInBackground(Summoner... summoners) {
+            Summoner summoner = summoners[0];
             ArrayList<ChampionMastery> mastery =api.getMasetryByID(summoner.getId());
             int a = 0;
             Logger.Log("summonerID", summoner.getId());
@@ -85,5 +102,9 @@ public class TabMastery extends Fragment {
             super.onPostExecute(championMasteries);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    private void setSummoner(Summoner sum){
+        this.summoner = sum;
     }
 }

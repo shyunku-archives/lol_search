@@ -17,10 +17,10 @@ import com.google.android.material.tabs.TabLayout;
 
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 
+import shyunku.project.Engines.Adapters.TabPagerAdapter;
 import shyunku.project.Engines.ImageManager;
 import shyunku.project.Global.RiotGameAPI;
 import shyunku.project.Objects.SummonerInfo;
-import shyunku.project.Objects.TabPagerAdapter;
 import shyunku.project.R;
 
 public class InfoActivity extends AppCompatActivity {
@@ -44,6 +44,7 @@ public class InfoActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("최근 전적"));
+        tabLayout.addTab(tabLayout.newTab().setText("게임 모니터링"));
         tabLayout.addTab(tabLayout.newTab().setText("숙련도"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -137,11 +138,11 @@ public class InfoActivity extends AppCompatActivity {
         }
     }
 
-    private void toast(String msg){
+    public void toast(String msg){
         Toast.makeText(InfoActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void toastLong(String msg){
+    public void toastLong(String msg){
         Toast.makeText(InfoActivity.this, msg, Toast.LENGTH_LONG).show();
     }
 }
