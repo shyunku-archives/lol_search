@@ -56,6 +56,7 @@ public class PVPRecyclerAdapter  extends RecyclerView.Adapter<PVPRecyclerAdapter
         Date dateen = new Date(info.getDuration()*1000+info.getStartFlag());
         holder.startFlagView.setText(sdf.format(datest)+" 시작");
         holder.endFlagView.setText(sdf.format(dateen)+" 종료");
+        holder.gameModeView.setText(info.getGameMode());
         holder.layout.setBackgroundColor(info.isWIn()? ResourcesCompat.getColor(
                 context.getResources(), R.color.winBG, null):ResourcesCompat.getColor(
                         context.getResources(), R.color.loseBG, null));
@@ -75,6 +76,7 @@ public class PVPRecyclerAdapter  extends RecyclerView.Adapter<PVPRecyclerAdapter
         public TextView gainedCsView;
         public TextView startFlagView;
         public TextView endFlagView;
+        public TextView gameModeView;
 
         public ConstraintLayout layout;
 
@@ -89,6 +91,7 @@ public class PVPRecyclerAdapter  extends RecyclerView.Adapter<PVPRecyclerAdapter
             gainedCsView = (TextView)view.findViewById(R.id.gained_cs_view);
             startFlagView = (TextView)view.findViewById(R.id.game_startflag_view);
             endFlagView = (TextView)view.findViewById(R.id.game_endflag_view);
+            gameModeView = (TextView)view.findViewById(R.id.game_mode_view);
 
             layout = (ConstraintLayout)view.findViewById(R.id.pvp_constraint);
         }

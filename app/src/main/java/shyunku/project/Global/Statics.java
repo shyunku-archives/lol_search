@@ -29,11 +29,13 @@ public class Statics {
 
     public static void ChampionInfoJsonParser(Context context){
         String json = loadChampionInfoJSONFromAsset(context);
+        Logger.Log("DOWNLOAD", "START");
         try {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject Data = jsonObject.getJSONObject("data");
 
             Iterator<String> keys = Data.keys();
+            Logger.Log("SIZE", Data.length()+"");
             while(keys.hasNext()){
                 String key = keys.next();
                 JSONObject champObject = Data.getJSONObject(key);
@@ -41,8 +43,9 @@ public class Statics {
                 String ChampionName = champObject.optString("name");
                 String ChampionID = champObject.optString("id");
 
+
                 Image icon = null;
-                InputStream ims = context.getAssets().open("img/"+ChampionID+".png");
+                InputStream ims = context.getAssets().open("img/champion/"+ChampionID+".png");
                 Bitmap bmp = BitmapFactory.decodeStream(ims);
 
                 Statics.CustomChampionList.add(new CustomChampionInfo(ChampionKey, ChampionName, ChampionID, bmp));

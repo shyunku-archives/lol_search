@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#007a74</color>
+    <color name="colorAccent">#007A74</color>
     <color name="darkTheme">#383838</color>
     <color name="lightDarkTheme">#EEEEEE</color>
     <color name="slightDarkTheme">#DDDDDD</color>
@@ -12,4 +12,8 @@
 
     <color name="PureBlack">#000000</color>
     <color name="PureWhite">#FFFFFF</color>
+
+
+    <color name="gold">#E8B41A</color>
+    <color name="cs">#A2FF94</color>
 </resources>

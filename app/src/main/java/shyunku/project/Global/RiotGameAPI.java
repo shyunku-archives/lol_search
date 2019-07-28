@@ -4,6 +4,7 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
+import net.rithms.riot.api.endpoints.league.dto.LeagueEntry;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchFrame;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
@@ -16,9 +17,13 @@ import net.rithms.riot.constant.Platform;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import shyunku.project.Engines.Logger;
+import shyunku.project.Objects.SummonerRank;
 
 public class RiotGameAPI {
-    public static final String API_KEY = "RGAPI-e4175db4-5bb4-43f1-bb87-ffdd8258c091";
+    public static final String API_KEY = "RGAPI-f39dc642-e5b8-48da-9585-4577556a2f1e";
     public static final Platform platform = Platform.KR;
     private ApiConfig config = new ApiConfig().setKey(API_KEY);
     RiotApi api = new RiotApi(config);
@@ -108,5 +113,85 @@ public class RiotGameAPI {
         }
 
         return lastFrame;
+    }
+
+    public Set<LeagueEntry> getLeagueEntrybyID(String id){
+        Set<LeagueEntry> entries = null;
+        try {
+            entries =  api.getLeagueEntriesBySummonerId(platform, id);
+            for(LeagueEntry entry : entries){
+                Logger.Log("ENTRY", entry.getTier()+" "+entry.getRank()+" "+entry.getLeaguePoints()+" "+entry.getQueueType());
+            }
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return entries;
+    }
+
+    public SummonerRank getRepresentiveRank(String id){
+        Set<LeagueEntry> entries = null;
+        try {
+            entries = api.getLeagueEntriesBySummonerId(platform, id);
+            for(LeagueEntry entry : entries) {
+                if (entry.getQueueType().equals("RANKED_SOLO_5x5"))
+                    return new SummonerRank(entry.getTier(), entry.getRank(), entry.getLeaguePoints(), "개인/2인전");
+            }
+            for(LeagueEntry entry : entries) {
+                if (entry.getQueueType().equals("RANKED_FLEX_SR"))
+                    return new SummonerRank(entry.getTier(), entry.getRank(), entry.getLeaguePoints(), "자유 5대5 대전");
+            }
+            for(LeagueEntry entry : entries) {
+                if (entry.getQueueType().equals("RANKED_TFT"))
+                    return new SummonerRank(entry.getTier(), entry.getRank(), entry.getLeaguePoints(), "전략적 팀 전투");
+            }
+            if(entries.size()>0){
+                //기타 모드가 대표 모드
+                for(LeagueEntry entry : entries)
+                    return new SummonerRank(entry.getTier(), entry.getRank(), entry.getLeaguePoints(), entry.getQueueType());
+            }
+            return new SummonerRank("", "", 0, "랭크 없음");
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public LeagueEntry getSoloRankInfo(String id){
+        try {
+            Set<LeagueEntry> entries = api.getLeagueEntriesBySummonerId(platform, id);
+            for(LeagueEntry entry : entries) {
+                if (entry.getQueueType().equals("RANKED_SOLO_5x5"))
+                    return entry;
+            }
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public LeagueEntry getFlexRankInfo(String id){
+        try {
+            Set<LeagueEntry> entries = api.getLeagueEntriesBySummonerId(platform, id);
+            for(LeagueEntry entry : entries) {
+                if (entry.getQueueType().equals("RANKED_FLEX_SR"))
+                    return entry;
+            }
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public LeagueEntry getTFTRankInfo(String id){
+        try {
+            Set<LeagueEntry> entries = api.getLeagueEntriesBySummonerId(platform, id);
+            for(LeagueEntry entry : entries) {
+                if (entry.getQueueType().equals("RANKED_TFT"))
+                    return entry;
+            }
+        } catch (RiotApiException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

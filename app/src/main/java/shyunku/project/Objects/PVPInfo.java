@@ -12,8 +12,9 @@ public class PVPInfo {
     private long startFlag;
     private long duration;
     private Bitmap bitmap;
+    private String gameMode;
 
-    public PVPInfo(boolean isWIn, int killCount, int dieCount, int assistCount, long gainedGold, long csCount, long startFlag, long duration, Bitmap bmp) {
+    public PVPInfo(boolean isWIn, int killCount, int dieCount, int assistCount, long gainedGold, long csCount, long startFlag, long duration, Bitmap bmp, String mode) {
         this.isWIn = isWIn;
         this.killCount = killCount;
         this.dieCount = dieCount;
@@ -23,6 +24,7 @@ public class PVPInfo {
         this.startFlag = startFlag;
         this.duration = duration;
         this.bitmap = bmp;
+        this.gameMode = mode;
     }
 
     public boolean isWIn() {
@@ -95,5 +97,13 @@ public class PVPInfo {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
     }
 }

@@ -8,11 +8,13 @@ public class SummonerInfo {
     private Summoner summoner;
     private Bitmap iconImage;
     private String memo;
+    private SummonerRank srank;
 
-    public SummonerInfo(Summoner s, Bitmap i, String memo){
+    public SummonerInfo(Summoner s, Bitmap i, String memo, SummonerRank rank){
         summoner = s;
         iconImage = i;
         this.memo = memo;
+        this.srank = rank;
     }
 
     public Summoner getSummoner() {
@@ -37,5 +39,13 @@ public class SummonerInfo {
 
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    public SummonerRank getRepresentedRank() {
+        return srank;
+    }
+
+    public void setRepresentedRank(SummonerRank representedRank) {
+        this.srank = representedRank;
     }
 }

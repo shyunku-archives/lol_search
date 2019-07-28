@@ -104,7 +104,7 @@ public class TabMastery extends Fragment {
             Logger.Log("puuID", summoner.getPuuid());
             Logger.Log("accountID", summoner.getAccountId());
 
-            final int cropSize = 20;
+            final int cropSize = 30;
             for(ChampionMastery cMastery : mastery){
                 publishProgress((double)a/(double)cropSize+60);
                 if(a>cropSize)break;

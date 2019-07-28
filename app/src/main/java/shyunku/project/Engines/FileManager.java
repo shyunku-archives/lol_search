@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import shyunku.project.Activities.MainActivity;
 import shyunku.project.Global.RiotGameAPI;
 import shyunku.project.Objects.SummonerInfo;
+import shyunku.project.Objects.SummonerRank;
 
 public class FileManager {
     public void saveFile(){
@@ -88,19 +89,21 @@ public class FileManager {
     private class LoadSummonerBmp extends AsyncTask<Summoner, Void, Bitmap> {
         Summoner received = null;
         String memo = null;
+        SummonerRank srank = null;
 
         @Override
         protected Bitmap doInBackground(Summoner... summoners) {
             Summoner summoner = summoners[0];
             received = summoner;
             Bitmap bmp = new ImageManager().getBitmap("https://opgg-static.akamaized.net/images/profile_icons/profileIcon"+received.getProfileIconId()+".jpg");
+            srank = new RiotGameAPI().getRepresentiveRank(received.getId());
             return bmp;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             super.onPostExecute(bitmap);
-            MainActivity.infos.add(new SummonerInfo(received, bitmap, memo));
+            MainActivity.infos.add(new SummonerInfo(received, bitmap, memo, srank));
             MainActivity.adapter.notifyDataSetChanged();
         }
 

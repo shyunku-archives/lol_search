@@ -31,12 +31,13 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 
 import java.util.ArrayList;
 
+import shyunku.project.Engines.Adapters.PlayerRecyclerAdapter;
 import shyunku.project.Engines.FileManager;
 import shyunku.project.Engines.ImageManager;
 import shyunku.project.Global.RiotGameAPI;
-import shyunku.project.Engines.Adapters.PlayerRecyclerAdapter;
 import shyunku.project.Global.Statics;
 import shyunku.project.Objects.SummonerInfo;
+import shyunku.project.Objects.SummonerRank;
 import shyunku.project.R;
 
 
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                     Summoner summoner = null;
                     Bitmap bitmap = null;
+                    SummonerRank srank = null;
                     int status = 0;
 
                     @Override
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                            toast("Error Code : 2");
                                            return;
                                        }
-                                       infos.add(new SummonerInfo(summoner, bitmap, "메모 없음"));
+                                       infos.add(new SummonerInfo(summoner, bitmap, "메모 없음", srank));
                                        adapter.notifyDataSetChanged();
                                    }
                                };
@@ -135,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                                     public void run(){
                                         ImageManager manager = new ImageManager();
                                         Bitmap bmp = manager.getBitmap("https://opgg-static.akamaized.net/images/profile_icons/profileIcon"+summoner.getProfileIconId()+".jpg");
+                                        setRank(new RiotGameAPI().getRepresentiveRank(summoner.getId()));
                                         setBitmap(bmp);
                                         handler2.sendMessage(handler2.obtainMessage());
                                         if(bmp == null){
@@ -166,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         bitmap = b;
                     }
                     public void setStatus(int i){status = i;}
+                    public void setRank(SummonerRank rank){this.srank = rank;}
                 });
 
                 builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {

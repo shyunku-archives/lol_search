@@ -25,8 +25,8 @@
 
             <TextView
                 android:id="@+id/summonerNicknameTextView"
-                android:layout_width="275dp"
-                android:layout_height="38dp"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="5dp"
@@ -39,12 +39,12 @@
                 android:fontFamily="@font/rixgom"
                 android:text="PlayerNickname"
                 android:textAlignment="viewStart"
-                android:textSize="28sp" />
+                android:textSize="24sp" />
 
             <ImageView
                 android:id="@+id/summonerIconView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
@@ -53,9 +53,56 @@
 
             <TextView
                 android:id="@+id/summonerLevelTextView"
-                android:layout_width="120dp"
-                android:layout_height="25dp"
+                android:layout_width="60dp"
+                android:layout_height="20dp"
                 android:layout_below="@+id/summonerNicknameTextView"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toStartOf="@+id/summonerTierView"
+                android:layout_toEndOf="@+id/summonerIconView"
+                android:fontFamily="@font/rixgom"
+                android:gravity="center_vertical"
+                android:text="- 레벨"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/summonerTierView"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/summonerNicknameTextView"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toStartOf="@+id/rankTypeView"
+                android:fontFamily="@font/rixgom"
+                android:gravity="center_vertical"
+                android:text="아이언 IV"
+                android:textAlignment="viewEnd"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rankTypeView"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/summonerNicknameTextView"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/rixgom"
+                android:gravity="center_vertical"
+                android:text="전략적 팀 전투"
+                android:textAlignment="viewEnd"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/summonerMemoView"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_below="@+id/summonerLevelTextView"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginEnd="5dp"
@@ -63,25 +110,10 @@
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@+id/summonerIconView"
                 android:fontFamily="@font/rixgom"
-                android:text="- 레벨"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/summonerMemoView"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_below="@+id/summonerNicknameTextView"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/summonerLevelTextView"
-                android:fontFamily="@font/rixgom"
                 android:text="null"
-                android:textAlignment="viewEnd"
-                android:textSize="22sp" />
+                android:textAlignment="textStart"
+                android:textSize="14sp" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

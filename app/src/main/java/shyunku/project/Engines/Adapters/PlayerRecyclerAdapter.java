@@ -46,6 +46,8 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<PlayerRecyclerAd
         holder.iconView.setImageBitmap(infos.get(position).getIconImage());
         holder.levelView.setText(infos.get(position).getSummoner().getSummonerLevel()+" 레벨");
         holder.memoView.setText(infos.get(position).getMemo());
+        holder.tierView.setText(infos.get(position).getRepresentedRank().getRefinedTier());
+        holder.rankTypeView.setText(infos.get(position).getRepresentedRank().getQueueType());
 
         final int pos = position;
         holder.entireView.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,8 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<PlayerRecyclerAd
         public TextView levelView;
         public TextView memoView;
         public ImageView iconView;
+        public TextView tierView;
+        public TextView rankTypeView;
 
         public View entireView;
 
@@ -79,6 +83,8 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<PlayerRecyclerAd
             levelView = (TextView)view.findViewById(R.id.summonerLevelTextView);
             iconView = (ImageView)view.findViewById(R.id.summonerIconView);
             memoView = (TextView)view.findViewById(R.id.summonerMemoView);
+            tierView = (TextView)view.findViewById(R.id.summonerTierView);
+            rankTypeView = (TextView)view.findViewById(R.id.rankTypeView);
         }
     }
 

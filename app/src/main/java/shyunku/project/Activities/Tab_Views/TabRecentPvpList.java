@@ -121,6 +121,10 @@ public class TabRecentPvpList extends Fragment {
                 MatchReference ref = list.get(i);
                 long gameID = ref.getGameId();
                 Match match = new RiotGameAPI().getMatchByMatchID(gameID);
+                String MatchMode = null;
+                if(match.getGameMode().equals("ARAM")) MatchMode = "칼바람 나락";
+                else if(match.getGameMode().equals("CLASSIC")) MatchMode = "소환사의 협곡";
+                else MatchMode = "기타 모드";
                 int participantID = -1;
                 if(match.getParticipantIdentities()!= null) {
                     for (int j = 0; j < 10; j++) {
@@ -139,12 +143,11 @@ public class TabRecentPvpList extends Fragment {
                 Participant participant = match.getParticipants().get(participantID-1);
                 ParticipantStats participantStats = participant.getStats();
 
-                Logger.Log("new", participant.getChampionId()+"");
                 Bitmap bmp = null;
                 if(Statics.getCustomChampionInfo(participant.getChampionId()+"")!= null)
                     bmp = Statics.getCustomChampionInfo(participant.getChampionId()+"").getImage();
                 pvpList.add(new PVPInfo(participantStats.isWin(), participantStats.getKills(),participantStats.getDeaths(),participantStats.getAssists(),
-                        participantStats.getGoldEarned(), participantStats.getTotalMinionsKilled(), match.getGameCreation(), match.getGameDuration(), bmp));
+                        participantStats.getGoldEarned(), participantStats.getTotalMinionsKilled(), match.getGameCreation(), match.getGameDuration(), bmp, MatchMode));
             }
             return null;
         }
